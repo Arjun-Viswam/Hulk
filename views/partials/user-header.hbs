@@ -1,0 +1,266 @@
+<!-- Header -->
+<header class="header shop">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	 
+  $("#myInput").on("keyup", function() {
+	 document.getElementById('thangappan').style.display='none'
+	 document.getElementById('ponnapan').style.display='none'
+	 document.getElementById('munushi').style.display='none'
+
+    var value = $(this).val().toLowerCase();
+    $(".single-product").filter(function() {
+      $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+	if(value==''){
+		 document.getElementById('thangappan').style.display='block'
+	   document.getElementById('ponnapan').style.display='block'
+	   document.getElementById('munushi').style.display='block'
+	}
+  });
+});
+</script>
+	<!-- Topbar -->
+	<div class="topbar">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 col-12">
+					<!-- Top Left -->
+					<div class="top-left">
+						<ul class="list-main">
+							<li><i class="ti-headphone-alt"></i> +060 (800) 801-582</li>
+							<li><i class="ti-email"></i> support@shophub.com</li>
+						</ul>
+					</div>
+					<!--/ End Top Left -->
+				</div>
+				<div class="col-lg-8 col-md-12 col-12">
+					<!-- Top Right -->
+					<div class="right-content">
+						<ul class="list-main">
+							{{#if users}}
+							<li><i class="ti-user"></i> <a href="/profile">{{users.first_name}}&nbsp;{{users.last_name}}</a></li>
+							{{else}}
+							<li><i class="ti-user"></i> <a href="/profile">My account</a></li>
+							{{/if}}
+							
+							<li><i class="ti-power-off"></i>
+							{{#if users}}
+							<a href="/logout">Logout</a>
+							{{else}}
+							<a href="/login">Login</a>
+							{{/if}}
+
+							</li>
+						</ul>
+					</div>
+					<!-- End Top Right -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Topbar -->
+	<div class="middle-inner">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-2 col-12">
+					<!-- Logo -->
+					<div class="logo">
+						<a href="index.html"><img src="images/logo.png" alt="logo"></a>
+					</div>
+					<!--/ End Logo -->
+					<!-- Search Form -->
+					{{!-- <div class="search-top">
+						<div class="top-search"><a href="#0"><i class="ti-search"></i></a></div>
+						<!-- Search Form -->
+						<div class="search-top">
+							<form class="search-form">
+								<input type="text" id="myInput" placeholder="Search here..." name="search">
+								<button value="search" type="submit"><i class="ti-search"></i></button>
+							</form>
+						</div>
+						<!--/ End Search Form -->
+					</div> --}}
+					<!--/ End Search Form -->
+					<div class="mobile-nav"></div>
+				</div>
+				<div class="col-lg-8 col-md-7 col-12">
+					<div class="search-bar-top">
+						<div class="search-bar">
+							
+							{{!-- <select>
+								<option selected="selected">All Category</option>
+								<option>Whey</option>
+								<option>Mass</option>
+								<option>Pro-Mass</option>
+							</select> --}}
+							
+							<form>
+								<input name="search" id="myInput" placeholder="Search Products Here....." type="search">
+								<button class="btnn"><i class="ti-search"></i></button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-12">
+					<div class="right-bar">
+						<!-- Search Form -->
+						{{!-- <div class="sinlge-bar">
+							<a href="#" class="single-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+						</div> --}}
+						<div class="sinlge-bar shopping">
+							<a href="/profile" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+							<div class="shopping-item">
+								<div class="dropdown-cart-header">
+									
+								</div>
+								
+								<div class="bottom">
+									
+									<a href="/myorders" class="btn animate">My Orders</a>
+									<a href="#" class="btn animate">Settings</a>
+									<a href="/password" class="btn animate">Change Password</a>
+								</div>
+							</div>
+						</div>
+						{{#if users}}
+						<div class="sinlge-bar shopping">
+							<a href="#" class="single-icon"><i class="ti-bag"></i> <span
+									class="total-count" id="cart-count">{{count}}</span></a>
+							<!-- Shopping Item -->
+							<div class="shopping-item">
+								<div class="dropdown-cart-header">
+									{{!-- <span id="cart-count">{{count}} Items</span> --}}
+									<a href="/cart">View Cart</a>
+								</div>
+								<ul class="shopping-list">
+									{{#each prodList}}
+									
+									<li>
+										<a href="#" class="remove" title="Remove this item"><i
+												class="fa fa-remove"></i></a>
+										<a class="cart-img" href="#"><img src="/product-images/{{this.product._id}}first.jpg"
+												alt="#"></a>
+										<h4><a href="#">{{this.product.product}}</a></h4>
+										<p class="quantity">{{this.proquantity}}x- <span class="amount">{{this.product.price}}</span></p>
+									</li>
+									
+									{{/each}}
+								</ul>
+								<div class="bottom">
+									<div class="total">
+										<span>Total</span>
+										{{#if count}}
+										<span class="total-amount"><i class="fa fa-inr"></i>&nbsp;{{total}}</span>
+										{{else}}
+										<span class="total-amount"><i class="fa fa-inr"></i>&nbsp;00.00</span>
+										{{/if}}
+									</div>
+									<a href="/checkout" class="btn animate">Checkout</a>
+								</div>
+							</div>
+							{{/if}}
+							<!--/ End Shopping Item -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{#if dropdown}}
+	<!-- Header Inner -->
+	<div class="header-inner">
+		<div class="container">
+			<div class="cat-nav-head">
+				<div class="row">
+					<div class="col-lg-3">
+						
+						<div class="all-category">
+							<h3 class="cat-heading">THE REAL HULK.</h3>
+							{{!-- <ul class="main-category">
+
+								<li><a href="#">best selling</a></li>
+								<li><a href="#">top 10 offer</a></li>
+								<li><a href="#">Whey</a></li>
+								<li><a href="#">Mass</a></li>
+								<li><a href="#">Pro-Mass</a></li>
+
+							</ul> --}}
+						</div>
+						
+					</div>
+					<div class="col-lg-9 col-12">
+						<div class="menu-area">
+							<!-- Main Menu -->
+							<nav class="navbar navbar-expand-lg">
+								<div class="navbar-collapse">
+									<div class="nav-inner">
+										<ul class="nav main-menu menu navbar-nav">
+											<li class="active"><a href="/">Home</a></li>
+											<li><a href="/products">Product<span
+														class="new">New</span></a></li>
+											
+											{{!-- <li><a href="#">Shop<i class="ti-angle-down"></i></a>
+												<ul class="dropdown">												 --}}
+													<li><a href="/cart">Cart</a></li>
+													{{!-- <li><a href="/checkout">Checkout</a></li>
+												</ul>
+											</li> --}}
+											
+											<li><a href="/contact">Contact Us</a></li>
+										</ul>
+									</div>
+								</div>
+							</nav>
+							<!--/ End Main Menu -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ End Header Inner -->
+</header>
+<!--/ End Header -->
+	
+		{{else}}
+	
+	<!-- Header Inner -->
+			<div class="header-inner">
+				<div class="container">
+					<div class="cat-nav-head">
+						<div class="row">
+							<div class="col-12">
+								<div class="menu-area">
+									<!-- Main Menu -->
+							<nav class="navbar navbar-expand-lg">
+								<div class="navbar-collapse">
+									<div class="nav-inner">
+										<ul class="nav main-menu menu navbar-nav">
+											<li class="active"><a href="/">Home</a></li>
+											<li><a href="/products">Product<span
+														class="new">New</span></a></li>
+											
+											{{!-- <li><a href="#">Shop<i class="ti-angle-down"></i></a>
+												<ul class="dropdown">												 --}}
+													<li><a href="/cart">Cart</a></li>
+													{{!-- <li><a href="/checkout">Checkout</a></li>
+												</ul>
+											</li> --}}
+											
+											<li><a href="/contact">Contact Us</a></li>
+										</ul>
+									</div>
+								</div>
+							</nav>
+							<!--/ End Main Menu -->	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/ End Header Inner -->
+		</header>
+{{/if}}

@@ -1,0 +1,370 @@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="">Checkout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+<section>
+    <div class="container">
+        <h4>Choose your address </h4>
+        <h4>&nbsp;</h4>
+        <div class="row">
+            {{#each address}}
+            <div class="col-md-3 d-flex">
+
+                <div class="card" style="margin-top: 30px;">
+                    <label class="p-3">
+                        {{this.details.first_name}} {{this.details.last_name}}<br>
+                        {{this.details.addressline1}}<br>
+                        {{this.details.addressline2}}<br>
+                        {{this.details.district}},&nbsp;{{this.details.state}}<br>
+                        {{this.details.post}},&nbsp;ph:{{this.details.mobile}}<br>
+                    </label>
+                    <button
+                        onclick="addAddress('{{this.details.first_name}}','{{this.details.last_name}}','{{this.details.addressline1}}','{{this.details.addressline2}}','{{this.details.district}}',
+                    '{{this.details.state}}','{{this.details.post}}','{{this.details.mobile}}','{{this.details.email}}','{{this.details.country}}')">use</button>
+                </div>
+
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+<!-- Start Checkout -->
+<section class="shop checkout section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="checkout-form">
+                    <h2>Make Your Checkout Here</h2>
+                    <p>Please register in order to checkout more quickly</p>
+                    <!-- Form -->
+                    <form class="form" id="check">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>First Name<span>*</span></label>
+                                    <input type="text" name="first_name" id="fname" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Last Name<span>*</span></label>
+                                    <input type="text" name="last_name" id="lname" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Email Address<span>*</span></label>
+                                    <input type="email" name="email" id="email" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Phone Number<span>*</span></label>
+                                    <input type="" name="number" id="mobile" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>State<span>*</span></label>
+                                    <input type="" name="state" id="state" placeholder="" required="required">
+
+                                    {{!-- <select name="state_name" id="state">
+                                        <option value="Andhra Pradhesh">Andhra Pradhesh</option>
+                                        <option value="Arunachal Pradhesh">Arunachal Pradhesh</option>
+                                        <option value="Assam">Assam</option>
+                                        <option value="Bihar">Bihar</option>
+                                        <option value="chattisgarh">chattisgarh</option>
+                                        <option value="Goa">Goa</option>
+                                        <option value="Gujarat">Gujarat</option>
+                                        <option value="Haryana">Haryana</option>
+                                        <option value="Himachal Pradhesh">Himachal Pradhesh</option>
+                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                        <option value="Jharkhand">Jharkhand</option>
+                                        <option value="karnataka">karnataka</option>
+                                        <option value="Kerala">Kerala</option>
+                                        <option value="Madhya Pradhesh">Madhya Pradhesh</option>
+                                        <option value="Maharashtra">Maharashtra</option>
+                                        <option value="Manipur">Manipur</option>
+                                        <option value="Meghalaya">Meghalaya</option>
+                                        <option value="Mizoram">Mizoram</option>
+                                        <option value="Nagaland">Nagaland</option>
+                                        <option value="Odisha">Odisha</option>
+                                        <option value="Punjab">Punjab</option>
+                                        <option value="Rajasthan">Rajasthan</option>
+                                        <option value="Sikkim">Sikkim</option>
+                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                        <option value="Telangana">Telangana</option>
+                                        <option value="Tripura">Tripura</option>
+                                        <option value="Uttar Pradhesh">Uttar Pradhesh</option>
+                                        <option value="Uttarakhand">Uttarakhand</option>
+                                        <option value="West Bengal">West Bengal</option>
+                                    </select> --}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>District<span>*</span></label>
+                                    <input type="text" id="district" name="district" placeholder="" required="required">
+                                    {{!-- <label>State / Divition<span>*</span></label>
+                                    <select name="state-province" id="state-province">
+                                        <option value="divition" selected="selected">New Yourk</option>
+                                        <option>Los Angeles</option>
+                                        <option>Chicago</option>
+                                        <option>Houston</option>
+                                        <option>San Diego</option>
+                                        <option>Dallas</option>
+                                        <option>Charlotte</option>
+                                    </select> --}}
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Address Line 1<span>*</span></label>
+                                    <input type="text" id="address1" name="address1" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Address Line 2<span>*</span></label>
+                                    <input type="text" id="address2" name="address2" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Postal Code<span>*</span></label>
+                                    <input type="text" id="postal" name="post" placeholder="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-12">
+                                <div class="form-group">
+                                    <label>Country<span>*</span></label>
+                                    <input type="text" id="country" name="country" value="" placeholder=""
+                                        required="required">
+                                    <input type="text" name="userId" value="{{users._id}}" hidden>
+
+                                    {{!-- <select name="company_name" id="company">
+                                        <option value="company" selected="selected">Microsoft</option>
+                                        <option>Apple</option>
+                                        <option>Xaiomi</option>
+                                        <option>Huawer</option>
+                                        <option>Wpthemesgrid</option>
+                                        <option>Samsung</option>
+                                        <option>Motorola</option>
+                                    </select> --}}
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group create-account">
+                                    <input id="cbox" name="save" type="checkbox">
+                                    <label>Save this address for next time</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--/ End Form -->
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="order-details">
+                    <!-- Order Widget -->
+                    <div class="single-widget">
+                        <h2>CART TOTALS</h2>
+                        <div class="content">
+                            <ul>
+                                {{#if count}}
+                                <li>Sub Total<span style="float: right; margin-right: 5%;" id="total"><i
+                                            class="fa fa-inr"></i> {{total}}</span></li>
+                                <li>(+) Shipping<span style="float: right; margin-right: 5%;" id="total"><i
+                                            class="fa fa-inr"></i>00.00</span></li>
+                                <li class="last">Total<span style="float: right; margin-right: 5%;" id="total"><i
+                                            class="fa fa-inr"></i> {{total}}</span></li>
+                                {{else}}
+                                <li>Sub Total<span style="float: right; margin-right: 5%;" id="total"><i
+                                            class="fa fa-inr"></i> 00.00</span></li>
+                                <li>(+) Shipping<span style="float: right; margin-right: 5%;" id="total"><i
+                                            class="fa fa-inr"></i>00.00</span></li>
+                                <li class="last">Total<span style="float: right; margin-right: 5%;" id="total"><i
+                                            class="fa fa-inr"></i> 00.00</span></li>
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </div>
+                    <!--/ End Order Widget -->
+                    <!-- Order Widget -->
+                    <div class="single-widget">
+                        <h2>Payments</h2>
+                        <div class="content">
+                            <div class="radio-payment">
+                                <label><input name="payment-method" value="COD" type="radio" required>&nbsp;
+                                    Cash On Delivery</label>
+                                <label><input name="payment-method" value="Razorpay" type="radio" required>&nbsp;
+                                    RazorPay</label>
+                                <label><input name="payment-method" value="paypal" type="radio" required>&nbsp;
+                                    PayPal</label>
+                                <input hidden name="total" value="{{total}}" >
+                                    
+                                        <div id="paypal-button-container"></div>
+                                        
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ End Order Widget -->
+                    <!-- Payment Method Widget -->
+                    <div class="single-widget payement">
+                        <div class="content">
+                            <img src="/images/payment-method.png" alt="#">
+                        </div>
+                    </div>
+                    <!--/ End Payment Method Widget -->
+                    <!-- Button Widget -->
+                    <div class="single-widget get-button">
+                        <div class="content">
+                            <div class="button">
+                                <button type="submit" id="e" class="btn">Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                    <!--/ End Button Widget -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/ End Checkout -->
+
+<script>
+    function addAddress(first_name, last_name, address1, address2, district, state, postal, mobile, email, country) {
+        document.getElementById("fname").value = first_name
+        document.getElementById("lname").value = last_name
+        document.getElementById("address1").value = address1
+        document.getElementById("address2").value = address2
+        document.getElementById("district").value = district
+        document.getElementById("state").value = state
+        document.getElementById("postal").value = postal
+        document.getElementById("mobile").value = mobile
+        document.getElementById("email").value = email
+        document.getElementById("country").value = country
+    }
+</script>
+
+<script>
+    $("#check").submit((e) => {
+        e.preventDefault()
+
+        $.ajax({
+            url: '/checkout',
+            method: 'POST',
+            data: $('#check').serialize(),
+            success: (response) => {
+                console.log(response)
+                if (response.paymentMethod=='COD') {
+                   alert("Order Placed")
+                   location.href='/myorders'
+                } else if(response.paymentMethod=='razorpay') {
+                    razorpayPayment(response)
+                } else{
+                     paypal.Buttons({
+                        createOrder: function (data, actions) {
+                            // This function sets up the details of the transaction, including the amount and line item details.
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: response.totalAmount
+                                    }
+                                }]
+                            });
+                        },
+                        onApprove: function (data, actions) {
+                            // This function captures the funds from the transaction.
+                            return actions.order.capture().then(function (details) {
+                                // This function shows a transaction success message to your buyer.
+                                alert('Transaction completed');
+                                console.log(response)
+                                location.href = '/myorders/' + response._id + ''
+                            });
+                        }
+                    }).render('#paypal-button-container');
+                }
+               
+                }
+
+            
+        })
+    })
+
+    function razorpayPayment(order){
+        console.log(order)
+
+var options = {
+    "key": "rzp_test_TzntSXAXTPYdYg", 
+    "amount": order.amount,
+    "currency": "INR",
+    "name": "Hulk.",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id, 
+    "handler": function (response){
+        
+
+        verifypayment(response,order)
+    },
+    "prefill": {
+        "name": order.user,
+        "email": order.email,
+        "contact": order.mobile
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#F7941D"
+    }
+};
+var rzp1 = new Razorpay(options);
+    rzp1.open();
+    }
+
+  
+</script>
+<script>
+    function verifypayment(payment,order){
+        $.ajax({
+            url:'/verify-payment',
+            method:'POST',
+            data:{
+                payment,
+                order
+            },
+            success:(response)=>{
+                if(response.status){
+                    alert("payment Successfull")
+                    alert("Order Placed")
+                    location.href='/myorders'
+                }else{
+                    alert("payment failed")
+                }
+            }
+            
+        })
+    }
+</script>
+
+

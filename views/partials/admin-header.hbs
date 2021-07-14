@@ -1,0 +1,81 @@
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
+    <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)"
+            data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></a>
+        <div class="top-left-part"><a class="logo" href=""><i
+                    class="glyphicon glyphicon-fire"></i>&nbsp;<span class="hidden-xs">My Admin</span></a></div>
+        <ul class="nav navbar-top-links navbar-left hidden-xs">
+            <li><a href="javascript:void(0)" class="open-close hidden-xs hidden-lg
+ waves-effect waves-light"><i class="ti-arrow-circle-left ti-menu"></i>
+                </a></li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right pull-right">
+            <li>
+                <form role="search" class="app-search hidden-xs">
+                    <input type="text" id="myInput" placeholder="Search..." class="form-control">
+                    {{!-- <a href=""><i class="fas fa-search"></i></a> --}}
+                </form>
+            </li>
+            <li>
+                <a class="profile-pic" href="#"> <img src="" alt="user-img" width="36" class="img-circle"><b
+                        class="hidden-xs">Admin</b> </a>
+            </li>   
+
+
+
+        </ul>
+    </div>
+    <!-- /.navbar-header -->
+    <!-- /.navbar-top-links -->
+    <!-- /.navbar-static-side -->
+</nav>
+<div class="navbar-default sidebar nicescroll" role="navigation" style="margin-right: 15%;">
+    <div class="sidebar-nav navbar-collapse ">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                
+            </li>
+            <li>
+                <a href="/admin" class="waves-effect"><i class="glyphicon glyphicon-fire fa-fw"></i>
+                    Dashboard</a>
+            </li>
+            <li>
+                <a href="/admin/product-manager" class="waves-effect"><i class="fas fa-toolbox"></i> Product Manager</a>
+            </li>
+            <li>
+                <a href="/admin/user-manager" class="waves-effect"><i class="fas fa-user-cog"></i> User Manager</a>
+            </li>
+            <li>
+                <a href="/admin/order-manager" class="waves-effect"><i class="fas fa-cogs"></i> Order Manager</a>
+            </li>
+            {{!-- <li>
+                <a href="themifyicon.html" class="waves-effect"><i class="fas fa-envelope"></i> Mails</a>
+            </li> --}}
+            <li>
+                <a href="/admin/report" class="waves-effect"><i class="fas fa-file-alt"></i> Report</a>
+            </li>
+            <li>
+                <a href="/admin/coupon-manager" class="waves-effect"><i class="fas fa-ticket-alt"></i> Coupons</a>
+            </li>
+             <li>
+                <a href="/admin/offer-manager" class="waves-effect"><i class="fa fa-gift"></i> Offer</a>
+            </li>
+
+        </ul>
+        <div style="float:right ; margin-right:5px;">
+            <i class="fas fa-power-off"><a class="" href="/admin/adminlogout">Logout</a></i>
+        </div>
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tbody tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script> 

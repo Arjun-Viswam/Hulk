@@ -1,0 +1,61 @@
+  
+       
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-12">
+                        <h4 class="page-title">Offer Manager</h4>
+                        <div class="row">
+                        </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>IMAGE</th>
+                                            <th>PRODUCTS</th>
+                                            <th>OFFER</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                     {{#each product}}
+                                        <tr>
+                                            
+                                            <td><img style="width: 50px; height: 50px;" src="/product-images/{{this._id}}first.jpg"></td>
+                                            
+
+                                            <td>{{this.product}}</td>
+                                            {{#if this.offer}}
+                                            <td>{{this.offer}}%</td>
+                                            {{else}}
+                                            <td>Nill</td>
+                                            {{/if}}
+                                            <td><a href="/admin/add-offer/{{this._id}}" class="fas fa-edit" ></a>
+                                            <a href="/admin/delete-offer/{{this._id}}/{{this.newprice}}" class="fas fa-trash-alt" onclick="return confirm('remove this offer')"></a></td>
+                                        </tr>
+                                        {{!-- <form method="POS">
+                                      <input value="{{this.newprice}}" hidden >
+                                    </form> --}}
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        	
+	<!-- /#wrapper -->
+       

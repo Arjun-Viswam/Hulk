@@ -1,0 +1,135 @@
+      <link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+        <script type="text/javascript" charset="utf8" 
+        src="https://code.jquery.com/jquery-3.5.1.js"></script>
+         <script type="text/javascript" charset="utf8" 
+        src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+         <script type="text/javascript" charset="utf8" 
+        src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+         <script type="text/javascript" charset="utf8" 
+        src=" https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+         <script type="text/javascript" charset="utf8" 
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+         <script type="text/javascript" charset="utf8" 
+        src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+         <script type="text/javascript" charset="utf8" 
+        src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+         <script type="text/javascript" charset="utf8" 
+        src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+<!-- Page Content -->
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-12">
+        <h4 class="page-title">Order Report</h4>
+        <div class="row">
+
+          
+        <form action="/admin/orderSales" method="POST">
+    <label >Find orders report from:</label>
+            <input type="date" id="fromDate" onclick="fromClick()" name="fromDate" required />
+            <label >TO:</label>
+            <input type="date" id="toDate" onclick="toClick()" name="toDate" required />
+
+            <input type="submit"  value="Filter"  />
+</form>
+        </div>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    {{#if report}}
+    <!-- row -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="white-box">
+          <div class="table-responsive">
+            <table class="table" id="myTable">
+              <thead>
+                <tr>
+
+                  <th class="text-center">DATE</th>
+                  <th class="text-center">CUSTOMER</th>
+                  {{! <th class="text-center">DATE</th> }}
+                  <th class="text-center">PRICE</th>
+                  <th class="text-center">PAYMENT_METHOD</th>
+                  <th class="text-center">PRODUCT_DETAILS</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {{#each report}}
+                  <tr>
+                    <td class="text-center">{{formatDate this.date 'DD-MM-YYYY'}}</td>
+
+                    <td class="text-center">{{this.deliveryDetails.first_name}}
+                      {{this.deliveryDetails.last_name}}</td>
+                    {{!-- <td class="text-center">{{this.date}}</td> --}}
+
+                    <td class="text-center"><i
+                        class="fa fa-inr"
+                      ></i>{{this.totalAmount}}</td>
+
+                    <td class="text-center">{{this.paymentMethod}}</td>
+
+                    <td class="text-center"><a
+                        href="/admin/report-product/{{this._id}}"
+                      >Product Details</a></td>
+
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+
+<!-- /#wrapper -->
+
+<script>
+$(document).ready(function() {
+    $('#myTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+{{else}}
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+
+<h1 style="color:rgb(4, 28, 245) ;" class="text-center">No Data available</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+{{/if}}
+
+<script>
+    function toClick(){
+    var to = document.getElementById('toDate')
+    var from = document.getElementById('fromDate').value
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    to.setAttribute("max", today); 
+    to.setAttribute("min",from)
+  }
+
+function fromClick(){
+  var to = document.getElementById('toDate').value
+  var from = document.getElementById('fromDate')
+  from.setAttribute("max", to);
+}
+</script>

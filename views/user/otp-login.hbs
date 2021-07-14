@@ -1,0 +1,164 @@
+<style>
+	.main-content{
+	width: 50%;
+	height: 50%;
+	border-radius: 20px;
+	box-shadow: 0 5px 5px rgba(0,0,0,.4);
+	margin: 5em auto;
+	display: flex;
+}
+.company__info{
+	background-color: #f39f04;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: #fff;
+}
+.fa-android{
+	font-size:3em;
+}
+@media screen and (max-width: 640px) {
+	.main-content{width: 90%;}
+	.company__info{
+		display: none;
+	}
+	.login_form{
+		border-top-left-radius:20px;
+		border-bottom-left-radius:20px;
+	}
+}
+@media screen and (min-width: 642px) and (max-width:800px){
+	.main-content{width: 70%;}
+}
+.row > h2{
+	color:#008080;
+}
+.login_form{
+	background-color: #fff;
+	border-top-right-radius:20px;
+	border-bottom-right-radius:20px;
+	border-top:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+form{
+	padding: 0 2em;
+}
+.form__input{
+	width: 100%;
+	border:0px solid transparent;
+	border-radius: 0;
+	border-bottom: 1px solid #aaa;
+	padding: 1em .5em .5em;
+	padding-left: 2em;
+	outline:none;
+	margin:1.5em auto;
+	transition: all .5s ease;
+}
+.form__input:focus{
+	border-bottom-color: #008080;
+	box-shadow: 0 0 5px rgba(0,80,80,.4); 
+	border-radius: 4px;
+}
+.btn{
+	transition: all .5s ease;
+	
+	border-radius: 30px;
+	color:#008080;
+	font-weight: 600;
+	background-color: #fff;
+	border: 1px solid #008080;
+	
+	
+}
+.btn:hover, .btn:focus{
+	background-color: #f39f04;
+	color:#fff;
+}
+</style>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>Login Page</title>
+	<script>
+		window.addEventListener( "pageshow", function ( event ) {
+  var historyTraversal = event.persisted || 
+                         ( typeof window.performance != "undefined" && 
+                              window.performance.navigation.type === 2 );
+  if ( historyTraversal ) {
+    // Handle page restore.
+    window.location.reload();
+  }
+});
+	</script>
+	
+</head>
+<body>
+	<!-- Main Content -->
+	
+		<div class="row main-content bg-success text-center">
+			<div class="col-md-4 text-center company__info">
+				<span class="company__logo"><h2><span class=""></span></h2></span>
+				<h4 class="company_title">HULK.</h4>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+				<div class="container-fluid">
+					<h1>&nbsp;</h1>
+					<div class="row">
+						<h3 style="color: orange;">OTP LOGIN</h3>
+					</div>
+					<h1>&nbsp;</h1>
+					<div class="row">
+						<form control="" action="/otp-login" method="POST" class="form-group">
+							<div class="row">
+								<input type="tel" style="width: 286px;" id="phone" name="mobile1"  class="form__input" placeholder="Mobile">
+
+								<input type="hidden" id="mobile1" name="mobile1"  class="form__input" placeholder="Mobile">
+									<input class="d-flex justify-content-end" style="width: 75px;" type="submit" value="send Otp" onclick="" class="btn">
+							</div>
+							<div class="row">
+								<!-- <span class="fa fa-lock"></span> -->
+								{{!-- <input type="password" name="password" id="password" class="form__input" placeholder="Password"> --}}
+							{{#if loginErr}}
+							<p class="error" style="color: #ee0303;">{{loginErr}}</p>
+							{{/if}}
+							</div>						
+							
+						</form>
+						<div>
+							<p>Login with email?
+							 <a class="" href="/login">Click here</a></p>
+					</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	
+	<!-- Footer -->
+	<div class="container-fluid text-center footer">
+		
+	</div>
+</body>
+<script>
+ var phone_number = window.intlTelInput(document.querySelector("#phone"), {
+  separateDialCode: true,
+  preferredCountries:["in"],
+  hiddenInput: "full",
+  utilsScript: "//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.3/js/utils.js"
+});
+
+$("form").submit(function() {
+	//e.preventDefault()
+  var full_number = phone_number.getNumber(intlTelInputUtils.numberFormat.E164);
+$("input[name='phone_number[full]'").val(full_number);
+ document.getElementById('mobile1').val=full_number
+  //var posting = $.post('/otp-login', {
+    //mobile1: full_number
+  //});
+  
+});
+ </script>
+

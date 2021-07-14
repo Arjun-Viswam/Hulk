@@ -1,0 +1,370 @@
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color:  #F7941D;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #F7941D;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+.disabled{
+ background-color:#F7941D ;
+ color:rgb(255, 255, 255); 
+ margin-left: 80px;"
+}
+@media(max-width:600px){
+.disabled{ margin-left: 0px;}
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+.contact {
+    padding: 0px 0;
+}
+</style>
+<!-- for-mobile-apps -->
+
+
+<!-- //for-mobile-apps -->
+<link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="/assets/css/flexslider.css" type="text/css" media="screen" />
+<link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="/assets/js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<!-- single -->
+<script src="/assets/js/imagezoom.js"></script>
+<script src="/assets/js/jquery.flexslider.js"></script>
+<!-- single -->
+<!-- cart -->
+	<script src="/assets/js/simpleCart.min.js"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+	<script type="text/javascript" src="/assets/js/bootstrap-3.1.1.min.js"></script>
+<!-- //for bootstrap working -->
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
+<script src="/assets/js/jquery.easing.min.js"></script>
+
+<!-- //banner-top -->
+<!-- banner -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- //banner -->
+<!-- single -->
+{{!-- <div class="breadcrumbs" style="background-color: white;">
+    <div class="container" style="background-color: white;">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="">product</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<div class="topnav" id="myTopnav">
+		  <a class="disabled mr-3"><b style="color: white;">THE REAL HULK.</b></a>
+
+  <a href="/" class="active">Home</a>
+  <a href="/products">Products</a>
+    <a href="/cart">Cart</a>
+  <a href="/contact">Contact</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+
+<div class="single">
+	<div class="container">
+        
+		<div class="col-md-6 single-right-left animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
+			<div class="grid images_3_of_2">
+				<div class="flexslider">
+					<!-- FlexSlider -->
+						<script>
+						// Can also be used with $(document).ready()
+							$(window).load(function() {
+								$('.flexslider').flexslider({
+								animation: "slides",
+								controlNav: "thumbnails"
+								});
+							});
+						</script>
+					<!-- //FlexSlider-->
+					
+                    
+					<ul class="slides">
+						<li data-thumb="/product-images/{{product._id}}first.jpg">
+							<div class="thumb-image"> <img src="/product-images/{{product._id}}first.jpg" style="width: 80%; height: auto;"  data-imagezoom="true" class="img-responsive"> </div>
+						</li>
+						<li data-thumb="/product-images/{{product._id}}second.jpg">
+							<div class="thumb-image"> <img src="/product-images/{{product._id}}second.jpg" style="width: 80%; height: auto;"   data-imagezoom="true" class="img-responsive"> </div>
+						</li>	
+						<li data-thumb="/product-images/{{product._id}}third.jpg">
+							<div class="thumb-image"> <img src="/product-images/{{product._id}}third.jpg"  style="width: 80%; height: auto;"  data-imagezoom="true" class="img-responsive"> </div>
+						</li>
+						<li data-thumb="/product-images/{{product._id}}fourth.jpg">
+							<div class="thumb-image"> <img src="/product-images/{{product._id}}fourth.jpg" style="width: 80%; height: auto;"   data-imagezoom="true" class="img-responsive"> </div>
+						</li>	
+					</ul>
+					<div class="clearfix"></div>
+				</div>	
+			</div>
+		</div>
+		<div class="col-md-6 single-right-left simpleCart_shelfItem animated wow slideInRight animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInRight;">
+					{{#if product.offer}}
+					<h3>{{product.product}}</h3> <h4>{{product.offer}}% Off</h>
+					<p><span class="item_price"><i class="fa fa-inr"></i><s>{{product.newprice}}</s></span> 
+					<span class="item_price"> New Price :  <i class="fa fa-inr"></i>{{product.price}}</span> </p>
+					{{else}}
+					<h3>{{product.product}}</h3> 
+					<p><span class="item_price"><i class="fa fa-inr"></i>{{product.price}}</span> 
+					{{/if}}
+
+					<p><span class="">flavour:{{product.flavour}}</span> </p>
+					<div class="rating1">
+					<h5>Rate this Product</h5>
+
+						<span class="starRating">
+							<input id="rating5" type="radio" name="rating" value="5" checked="">
+							<label for="rating5">5</label>
+							<input id="rating4" type="radio" name="rating" value="4">
+							<label for="rating4">4</label>
+							<input id="rating3" type="radio" name="rating" value="3" >
+							<label for="rating3">3</label>
+							<input id="rating2" type="radio" name="rating" value="2">
+							<label for="rating2">2</label>
+							<input id="rating1" type="radio" name="rating" value="1">
+							<label for="rating1">1</label>
+						</span>
+					</div>
+					{{!-- <div class="description">
+						<h5>Check delivery, payment options and charges at your location</h5>
+						<input type="text" value="Enter pincode" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">
+						<input type="submit" value="Check">
+					</div> --}}
+					{{!-- <div class="color-quality">
+						<div class="color-quality-right">
+							<h5>Quality :</h5>
+							<select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
+								<option value="null">5kg</option>
+								<option value="null">2kg</option> 
+								<option value="null">1kg</option>					
+																
+							</select>
+						</div>
+					</div> --}}
+					<div class="occasional">
+						
+						<div class="clearfix"> </div>
+					</div>
+					<div class="occasion-cart">
+						<button style="height: 36px; width: 130px; color: white;" class="item_add hvr-outline-out button2" onclick="addToCart('{{product._id}}')">Add to cart</button>
+					</div>
+					
+		</div>
+				
+                
+	</div>
+</div>
+
+<!-- //single -->
+<!-- //product-nav -->
+
+			<!-- Start Shop Services Area -->
+	<section class="shop-services section home">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-rocket"></i>
+						<h4>Free shiping</h4>
+						<p>Orders over $100</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-reload"></i>
+						<h4>Free Return</h4>
+						<p>Within 30 days returns</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-lock"></i>
+						<h4>Sucure Payment</h4>
+						<p>100% secure payment</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+				<div class="col-lg-3 col-md-6 col-12">
+					<!-- Start Single Service -->
+					<div class="single-service">
+						<i class="ti-tag"></i>
+						<h4>Best Peice</h4>
+						<p>Guaranteed price</p>
+					</div>
+					<!-- End Single Service -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Shop Services Area -->
+
+	
+	<!-- Start Footer Area -->
+	<footer class="footer">
+		<!-- Footer Top -->
+		<div class="footer-top section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-5 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer about">
+							<div class="logo">
+							</div>
+							<p class="text">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue,  magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">+0123 456 789</a></span></p>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-2 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer links">
+							<h4>Information</h4>
+							<ul>
+								<li><a href="#">About Us</a></li>
+								<li><a href="#">Faq</a></li>
+								<li><a href="#">Terms & Conditions</a></li>
+								<li><a href="#">Contact Us</a></li>
+								<li><a href="#">Help</a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-2 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer links">
+							<h4>Customer Service</h4>
+							<ul>
+								<li><a href="#">Payment Methods</a></li>
+								<li><a href="#">Money-back</a></li>
+								<li><a href="#">Returns</a></li>
+								<li><a href="#">Shipping</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Single Widget -->
+						<div class="single-footer social">
+							<h4>Get In Tuch</h4>
+							<!-- Single Widget -->
+							<div class="contact">
+								<ul>
+									<li>NO. 342 - London Oxford Street.</li>
+									<li>012 United Kingdom.</li>
+									<li>info@eshop.com</li>
+									<li>+032 3456 7890</li>
+								</ul>
+							</div>
+							<!-- End Single Widget -->
+							<ul>
+								<li><a href="#"><i class="ti-facebook"></i></a></li>
+								<li><a href="#"><i class="ti-twitter"></i></a></li>
+								<li><a href="#"><i class="ti-flickr"></i></a></li>
+								<li><a href="#"><i class="ti-instagram"></i></a></li>
+							</ul>
+						</div>
+						<!-- End Single Widget -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Footer Top -->
+		<div class="copyright">
+			<div class="container">
+				<div class="inner">
+					<div class="row">
+						<div class="col-lg-6 col-12">
+							<div class="left">
+								<p>Copyright © 2020 <a href="http://www.wpthemesgrid.com" target="_blank">Wpthemesgrid</a>  -  All Rights Reserved.</p>
+							</div>
+						</div>
+						<div class="col-lg-6 col-12">
+							<div class="right">
+								<img src="images/payments.png" alt="#">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>

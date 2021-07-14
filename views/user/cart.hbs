@@ -1,0 +1,215 @@
+
+
+ <!--/ End Header -->
+{{!-- <script>
+	function removeProduct(cartId,productId){
+		$.ajax({
+			url: '/remove-product-fromCart',
+			data:{
+				cart: cartId,
+				product: productId
+			},
+			method: 'post',
+			success: (response)=>{
+				if(response.status){
+					
+					location.reload()
+				}
+			}
+		})
+	}
+</script> --}}
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="bread-inner">
+					<ul class="bread-list">
+						<li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+						<li class="active"><a href="">Cart</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Breadcrumbs -->
+{{#if count}}
+<!-- Shopping Cart -->
+<div class="shopping-cart section">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Shopping Summery -->
+				<table class="table shopping-summery">
+					<thead>
+						<tr class="main-hading">
+							<th>PRODUCT</th>
+							<th>NAME</th>
+							<th class="text-center">UNIT PRICE</th>
+							<th class="text-center">QUANTITY</th>
+							<th class="text-center">TOTAL</th>
+							<th class="text-center"><i class="ti-trash remove-icon"></i></th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each prodList}}
+						<tr>
+
+							<td class="image" data-title="Image"><img src="/product-images/{{this.product._id}}first.jpg"
+									alt=""></td>
+							<td class="product-des" data-title="Description">
+								<p class="product-name"><a href="/single/{{this.products._id}}">{{this.product.product}}</a></p>
+								<p class="product-des">{{this.product.flavour}}</p>
+							</td>
+							<td class="price" data-title="Price"><span><i
+										class="fa fa-inr"></i>{{this.product.price}}</span></td>
+
+							<td class="qty" data-title="Qty" style="text-align:center">
+								<!-- Input Order -->
+								<div class="d-flex">
+								<div class="input-group" >
+									<div class="button minus">
+										<button type="button" class="btn btn-primary btn-number"
+											onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../users._id}}',-1,'{{this.product.price}}')">
+											<i class="ti-minus"></i>
+										</button>
+									</div>
+									<span type="text" style="display: inline-block;" class="input-number p-2" id="{{this.product._id}}">{{this.proquantity}}</span> 
+									<div class="button plus">
+										<button type="button" class="btn btn-primary btn-number"
+											onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../users._id}}',1,'{{this.product.price}}')">
+											<i class="ti-plus"></i>
+										</button>
+									</div>
+								</div>
+								</div>
+								<!--/ End Input Order -->
+							</td>
+							<td class="total-amount" data-title="Total"><i class="fa fa-inr"></i><span id="{{this.product._id}}a">{{this.total}}</span></td>
+							<td  ><a href="/remove-product-fromCart/{{this._id}}/{{this.product._id}}" class="fas fa-trash-alt" onclick="return confirm('confirm delete {{this.product.product}}')"></a>
+							</td>
+
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+				<!--/ End Shopping Summery -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<!-- Total Amount -->
+				<div class="total-amount">
+					<div class="row">
+						<div class="col-lg-8 col-md-5 col-12">
+							<div class="left">
+								<div class="coupon">
+									<form id="coupon">
+										<input name="coupon" placeholder="Enter Your Coupon">
+										<input type="" name="total" id="total3" value="{{total}}" hidden>
+										<button class="btn">Apply</button>
+									</form>
+								</div>
+								<span hidden id="errorspan" style="color: red;">No such Coupon Exist</span>
+								<span hidden id="error" style="color: red;">Coupon Expired</span>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-7 col-12">
+							<div class="right">
+								<ul>
+									<li>Cart Subtotal
+									{{#if count}}
+									<span style="float: right; margin-right: 5%;" ><i class="fa fa-inr"></i><span id="total">&nbsp;{{total}}</span></span>
+									{{else}}
+									<span style="float: right; margin-right: 5%;"><i class="fa fa-inr"></i>&nbsp;00.00</span>
+									{{/if}}
+									</li>
+									<li>Shipping<span>Free</span></li>
+									{{!-- <li>You Save<span>$20.00</span></li> --}} 
+									<li class="last">You Pay
+									{{#if count}}
+									<span style="float: right; margin-right: 5%;" ><i class="fa fa-inr"></i><span id="total2">&nbsp;{{total}}</span></span>
+									{{else}}
+									<span style="float: right; margin-right: 5%;"><i class="fa fa-inr"></i>&nbsp;00.00</span>
+									{{/if}}
+									</li>
+								</ul>
+								<div class="button5">
+									<a href="/checkout" class="btn">Checkout</a>
+									<a href="/" class="btn">Continue shopping</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/ End Total Amount -->
+			</div>
+		</div>
+	</div>
+</div>
+<!--/ End Shopping Cart -->
+{{else}}
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+
+<h1 style="color:rgb(245, 161, 4) ;" class="text-center">Your Cart Is Empty</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+{{/if}}
+<script>
+		function changeQuantity(cartId, productId, userId, count,perProduct) {
+			let proquantity=parseInt(document.getElementById(productId).innerHTML)
+			count=parseInt(count)
+		$.ajax({
+			url: '/change-product-quantity',
+			data: {
+				cart: cartId,
+				product: productId,
+				user:userId,
+				count: count,
+				proquantity:proquantity,
+				perProduct:perProduct
+			},
+			method: 'post',
+			success: (response) => {
+
+				if (response.remove) {
+					window.location.reload()
+				}else{
+					document.getElementById(productId).innerHTML=parseInt(proquantity+count)
+					document.getElementById('total').innerHTML=response.total
+					document.getElementById('total2').innerHTML=response.total
+					document.getElementById('total3').value=response.total
+					document.getElementById(productId+'a').innerHTML=perProduct*(proquantity+count)
+				}
+			}
+		})
+	}
+</script>
+
+<script>
+
+  $("#coupon").submit((e) => { 
+      e.preventDefault() 
+      
+      $.ajax({ 
+	   url:'/coupon',
+       method: 'POST', 
+       data: $('#coupon').serialize(), 
+       success:(response) => { 
+		   if(response){
+		   			document.getElementById('total').innerHTML=response
+					document.getElementById('total2').innerHTML=response
+		   }else if(response.notexist){
+			   document.getElementById('errorspan').removeAttribute('hidden')
+		   }else if(response.expired){
+			   document.getElementById('error').removeAttribute('hidden')
+		   }
+            } 
+      }) 
+  })
+</script>
+

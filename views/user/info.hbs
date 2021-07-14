@@ -1,0 +1,79 @@
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 14px;
+}
+th {
+  background-color: rgb(240, 173, 48);
+  color: white;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="bread-inner">
+					<ul class="bread-list">
+						<li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+                        <li><a href="/myorders">My Orders<i class="ti-arrow-right"></i></a></li>
+						<li class="active"><a href="">info</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Breadcrumbs -->
+
+
+
+<div style="overflow-x:auto;">
+	<div class="container">
+  <table>
+   <thead>
+						<tr >
+							<th class="text-center">PRODUCT</th>
+							<th class="text-center" >NAME</th>
+							<th class="text-center">UNIT PRICE</th>
+							<th class="text-center">QUANTITY</th>
+							{{!-- <th class="text-center">TOTAL</th> --}}
+							<th class="text-center">TRACK ORDER</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each products}}
+						<tr>
+
+							<td class="image text-center" data-title="Image"><img style="width: 100px; height: auto; align-content: center;" src="/product-images/{{this.product._id}}first.jpg"
+									alt=""></td>
+							<td class="product-des text-center" data-title="Description">
+								<p class="product-name"><a href="/single/{{this.products._id}}">{{this.product.product}}</a></p>
+								<p class="product-des">{{this.product.flavour}}</p>
+							</td>
+							<td class="price text-center" data-title="Price"><span><i
+										class="fa fa-inr"></i>{{this.product.price}}</span></td>
+
+							<td class="qty text-center" data-title="Qty" style="text-align:center">
+									
+									<span type="text" style="display: inline-block;" class="input-number p-2" >{{this.proquantity}} Packets</span> 
+							</td>
+							
+                            <td  class="price text-center" data-title="Price"><button style="background-color: rgb(240, 173, 48);width: 90px;height: 26px;"><a href="">Track order</a></button></td>
+						</tr>
+						{{/each}}
+					</tbody>
+  </table>
+</div>
+</div>
+
+
+

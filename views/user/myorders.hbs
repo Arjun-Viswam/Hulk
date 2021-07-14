@@ -1,0 +1,85 @@
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 14px;
+}
+th {
+  background-color:rgb(240, 173, 48);;
+  color: white;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="/">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="">My Orders</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumbs -->
+
+
+<div style="overflow-x:auto;">
+    <div class="container">
+  <table>
+     <thead>
+                        <tr >
+                            <th class="text-center">DATE</th>
+                            <th class="text-center">ADDRESS</th>
+                            <th class="text-center">TOTAL_AMOUNT</th>
+                            <th class="text-center">PAYMENT_METHOD</th>
+                            <th class="text-center">STATUS</th>
+                            <th class="text-center">DETAILS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{#each orders}}
+                        <tr>
+
+                           <td class="text-center">{{formatDate this.date 'DD-MM-YYYY'}}</td>
+                            <td class="text-center" data-title="Address">
+                                <p class="product-name"><a
+                                        href="/single/{{this.products._id}}">{{this.deliveryDetails.addressline1}}</a>
+                                </p>
+                                <p class="product-des">{{this.deliveryDetails.addressline2}}</p>
+                                <p class="product-des">{{this.deliveryDetails.district}}</p>
+                            </td>
+                            <td class="text-center" data-title="Amount"><i class="fa fa-inr"></i>{{totalAmount}}</td>
+
+                            <td class="text-center" data-title="Payment Method">{{this.paymentMethod}}</td>
+                            <td class="text-center" data-title="Status">{{this.status}}</td>
+                            {{#if this.cancel}}
+                             <td class="text-center" data-title="Options">
+                            <button style="background-color: rgb(240, 173, 48);width: 106px;height: 26px;"><a href="/view-order-products/{{this._id}}">Info</a></button></td>
+                            {{else}}
+                            {{#if delivered}}
+                            <td class="text-center" data-title="Options">
+                           <button style="background-color: rgb(240, 173, 48);width: 106px;height: 26px;"><a href="">Return</a></button>
+                            <button style="background-color: rgb(240, 173, 48);width: 106px;height: 26px;"><a href="/view-order-products/{{this._id}}">Info</a></button></td>
+                            {{else}}
+                            <td class="text-center" data-title="Options">
+                           <button style="background-color: rgb(240, 173, 48);width: 106px;height: 26px;"><a href="/cancel-order/{{this._id}}" onclick="return confirm('confirm cancel {{this.product}}')">Cancel Order</a></button>
+                            <button style="background-color: rgb(240, 173, 48);width: 106px;height: 26px;"><a href="/view-order-products/{{this._id}}">Info</a></button></td>
+                            {{/if}}
+                            {{/if}}
+                        </tr>
+
+                        {{/each}}
+                    </tbody>
+  </table>
+  </div>
+</div>

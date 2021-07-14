@@ -1,0 +1,60 @@
+
+        
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-12">
+                        <h4 class="page-title">User Manager</h4>
+                        <div class="row">
+                           
+                        </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>FIRST_NAME</th>
+                                            <th>LAST_NAME</th>
+                                            <th>EMAIL</th>
+                                            <th>BLOCK USER</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each users}}
+                                        <tr>
+                                            
+                                           
+                                            
+
+                                            <td>{{this.first_name}}</td>
+                                            <td>{{this.last_name}}</td>
+                                            <td>{{this.email}}</td>
+                                            {{!-- <form action="/admin/block-user/{{this._id}}" method="POST">
+                                            <button type="submit"></button>hou</form>  --}}
+                                            {{#if this.block}}
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/unblock-user/{{this._id}}" class="fa fa-ban" style="color:darkgreen;" onclick="return confirm('comfirm to unblock this user {{this.users}}')"></a></td>                          
+                                            {{else}}
+                                            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/block-user/{{this._id}}" class="fa fa-ban" style="color: crimson;" onclick="return confirm('comfirm to block this user {{this.users}}')"></a></td>
+                                            {{/if}}
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        	
+	<!-- /#wrapper -->
+       

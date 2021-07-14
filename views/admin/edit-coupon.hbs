@@ -1,0 +1,73 @@
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-12">
+        <h4 class="page-title">Coupon Manager</h4>
+        <div class="row">
+
+        </div>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- row -->
+
+    <div class="white-box">
+
+      <form method="POST" action="/admin/update-coupon/{{coupon._id}}" class="container p-5">
+        <div class="row">
+
+          <div class="col-lg-6" style="max-width: 30em; ">
+            <div class="form-group">
+              <label for="formGroupExampleInput">COUPON CODE</label>
+              <input
+                type="text"
+                class="form-control"
+                name="couponcode"
+                value="{{coupon.couponcode}}"
+              />
+               <label style="display: none; color: red; font-size: 13px;" id="err1">offer should be less than 100%</label>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6" style="max-width: 10em; ">
+            <div class="form-group">
+              <label for="formGroupExampleInput">OFFER %</label>
+              <input
+                type="number"
+                class="form-control"
+                name="offer"
+                id="offer"
+                value="{{coupon.offer}}"
+              />
+            </div>
+
+          </div>
+          <div class="col-lg-6" style="max-width: 10em; padding-top: 30px; ">
+            <div class="form-group">
+              <button id="submit">add</button>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+     <script>
+	      $(document).ready(function () {
+      var nflag=1,eflag=1,pflag=1
+      $("#offer").blur(function () {
+        var text = $(this).val()
+        if (text>=100) {
+          $("#err1").show()
+          $("#submit").attr('disabled',true)
+        }
+        else {
+          $("#err1").hide()
+         $("#submit").attr('disabled',false)
+        }
+       
+      })
+    })
+
+  </script>

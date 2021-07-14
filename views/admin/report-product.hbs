@@ -1,0 +1,55 @@
+
+
+<!-- Page Content -->
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-12">
+        <h4 class="page-title">Order Report</h4>
+        <div class="row">
+
+        </div>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- row -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="white-box">
+          <div class="table-responsive">
+            <table class="table" id="myTable">
+              <thead>
+                <tr>
+
+                  <th class="text-center">SL_NO</th>
+                  <th class="text-center">PRODUCTS</th>
+                  <th class="text-center">FLAVOUR</th>
+                  <th class="text-center">QUANTITY</th>
+                  <th class="text-center">PRICE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each products}}
+                  <tr>
+                    <td class="text-center">{{@index}}</td>
+
+                    <td class="text-center">{{this.product.product}}</td>
+                    <td class="text-center">{{this.product.flavour}}</td>
+
+                    <td class="text-center">{{this.proquantity}}</td>
+
+                    <td class="text-center"><i class="fa fa-inr"></i>{{this.product.price}}</td>
+
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+
+<!-- /#wrapper -->

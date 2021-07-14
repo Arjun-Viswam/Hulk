@@ -1,0 +1,229 @@
+
+	
+	
+	
+	
+	<!-- Breadcrumbs -->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="bread-inner">
+						<ul class="bread-list">
+							<li><a href="index1.html">Home<i class="ti-arrow-right"></i></a></li>
+							<li class="active"><a href="blog-single.html">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Breadcrumbs -->
+  
+	<!-- Start Contact -->
+	<section id="contact-us" class="contact-us section">
+		<div class="container">
+				<div class="contact-head">
+					<div class="row">
+						<div class="col-lg-8 col-12">
+							<div class="form-main">
+								<div class="title">
+									<h4>Get in touch</h4>
+									<h3>Write us a message</h3>
+								</div>
+								<form class="form" id="gform" method="post">
+									<div class="row">
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label>Your Name<span>*</span></label>
+												<input name="name" id="name" type="text" placeholder="" required>
+												 <label style="display: none; color: red; font-size: 13px;" id="err1">Enter atleast 4 charcters</label>
+                  <label style="display:none; color: red; font-size: 13px;" id="err2">Enter a valid Name</label>
+											</div>
+										</div>
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label>Your Subjects<span>*</span></label>
+												<input name="subject" id="subject" type="text" placeholder="" required>
+												<label style="display: none; color: red; font-size: 13px;" id="err3">Please enter at least 4 chars of
+                  subject</label>
+											</div>
+										</div>
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label>Your Email<span>*</span></label>
+												<input name="email" id="email" type="email" placeholder=""required>
+												 <label style="display: none; color: red; font-size: 13px;" id="err5">Enter a valid Email
+                    address</label>
+											</div>	
+										</div>
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label>Your Phone<span>*</span></label>
+												<input name="company_name" id="number" type="number" placeholder="" required>
+												 <label style="display: none; color: red; font-size: 13px;" id="err6">Enter a valid number</label>
+
+											</div>	
+										</div>
+										<div class="col-12">
+											<div class="form-group message">
+												<label>your message<span>*</span></label>
+												<textarea name="message" id="message" placeholder="" required></textarea>
+												 <label style="display: none; color: red; font-size: 13px;" id="err7">Write Something</label>
+											</div>
+										</div>
+										<div class="col-12">
+											<div class="form-group button">
+												<button type="submit"  id="submit" class="btn ">Send Message</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-lg-4 col-12">
+							<div class="single-head">
+								<div class="single-info">
+									<i class="fa fa-phone"></i>
+									<h4 class="title">Call us Now:</h4>
+									<ul>
+										<li>+123 456-789-1120</li>
+										<li>+522 672-452-1120</li>
+									</ul>
+								</div>
+								<div class="single-info">
+									<i class="fa fa-envelope-open"></i>
+									<h4 class="title">Email:</h4>
+									<ul>
+										<li><a href="mailto:info@yourwebsite.com">info@yourwebsite.com</a></li>
+										<li><a href="mailto:info@yourwebsite.com">support@yourwebsite.com</a></li>
+									</ul>
+								</div>
+								<div class="single-info">
+									<i class="fa fa-location-arrow"></i>
+									<h4 class="title">Our Address:</h4>
+									<ul>
+										<li>KA-62/1, Travel Agency, 45 Grand Central Terminal, New York.</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+	<!--/ End Contact -->
+	
+	
+	
+	<script>
+
+    $("#gform").submit((e) => {
+      e.preventDefault()
+      $.ajax({
+        url: "https://script.google.com/macros/s/AKfycbxcEi7NZFO_GIaMBM-rH0q7eaR-meyVzEZfKnfrdWIXWG8diy6TtEus7aKk7SsPv5Bn/exec",
+        data: $("#gform").serialize(),
+        method: "post",
+        success: function (response) {
+          alert("Form submitted successfully")
+          window.location.reload()
+        },
+        error: function (err) {
+          alert("Something Error")
+
+        }
+      })
+    })
+
+  </script>
+  <script>
+	      $(document).ready(function () {
+      var nflag=1,eflag=1,pflag=1
+      $("#name").blur(function () {
+        var text = $(this).val()
+        if (text.length < 4) {
+          $("#err1").show()
+		  $("err2").hide()
+          nflag=1
+        }
+        else {
+          $("#err1").hide()
+         
+          nflag=0
+        }
+        if (/^[A-Za-z ]+$/.test(text) == false) {
+          $("#err2").show()
+          
+          nflag=1
+        }
+        else {
+          $("#err2").hide()
+          
+          nflag=0
+        }
+      })
+       $("#subject").blur(function () {
+        var text = $(this).val()
+        if (text.length < 4) {
+          $("#err3").show()
+          nflag=1
+        }
+        else {
+          $("#err3").hide()
+          sflag=0
+        }
+       
+      })
+   $("#message").blur(function () {
+        var text = $(this).val()
+        if (text.length < 10) {
+          $("#err7").show()
+          mflag=1
+        }
+        else {
+          $("#err7").hide()
+          mflag=0
+        }
+       
+      })
+
+      $("#email").blur(function () {
+        var text = $(this).val()
+        if (/^[A-Za-z0-9]+\@[a-z]+\.[a-z]+$/.test(text) == false) {
+          $("#err5").show()
+          eflag=1
+          $("#submit").attr('disabled',true)
+        }
+        else {
+          $("#err5").hide() 
+          eflag=0
+        }
+      })
+      $("#number").blur(function () {
+        var text = $(this).val()
+        if (text.length == 10) {
+          if (/^[0-9]+$/.test(text) == true) {
+            $("#err6").hide()
+            pflag=0
+          }
+          else {
+            $("#err6").show()
+            pflag=1
+          }
+        }
+        else {
+          $("#err6").show()
+          pflag=1
+        }
+      })
+      $("#submit").click(function(){
+        if(nflag==0 && pflag==0 && eflag==0 && mflag==0 && sflag==0)
+        {
+          alert("Message is sent")
+        }
+       
+      })
+    })
+
+  </script>
+   

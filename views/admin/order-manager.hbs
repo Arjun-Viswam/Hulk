@@ -1,0 +1,125 @@
+
+
+<!-- Page Content -->
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row bg-title">
+      <div class="col-lg-12">
+        <h4 class="page-title">Order Manager</h4>
+        <div class="row">
+
+        </div>
+      </div>
+      <!-- /.col-lg-12 -->
+    </div>
+    <!-- row -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="white-box">
+          <div class="table-responsive">
+            <table class="table" id="myTable">
+              <thead>
+                <tr>
+
+                  <th class="text-center">DATE</th>
+                  <th class="text-center">CUSTOMER</th>
+                  {{!-- <th class="text-center">DATE</th> --}}
+                  <th class="text-center">PRICE</th>
+                  <th class="text-center">PAYMENT_METHOD</th>
+                  <th class="text-center">PRODUCT_DETAILS</th>
+
+                  <th class="text-center">STATUS</th>
+                  <th class="text-center">MANAGE_ORDER</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {{#each orders}}
+                  <tr>
+                    <td class="text-center">{{formatDate this.date 'DD-MM-YYYY'}}</td>
+
+                    <td
+                      class="text-center"
+                    >{{this.deliveryDetails.first_name}} {{this.deliveryDetails.last_name}}</td>
+                    {{!-- <td class="text-center">{{this.date}}</td> --}}
+
+                    <td class="text-center"><i class="fa fa-inr"></i>{{this.totalAmount}}</td>
+
+                    <td class="text-center">{{this.paymentMethod}}</td>
+                    
+                    <td class="text-center"><a href="/admin/order-product-details/{{this._id}}">Product Details</a></td>
+                    <td class="text-center" ><p id="{{this._id}}" class="text-center" style="width: 84px;" >{{this.status}}</p></td>
+                    {{#if this.cancel}}
+                    <td class="text-center">Order Cancelled</td>
+                    {{else}}
+
+
+                    {{#if shipped}}
+
+                    {{#if delivered}}
+                    <td class="text-center">Order delivered</td>
+                    {{else}}
+                     <td class="text-center"><button id="delivered"  onclick="proceedToDeliver('{{this._id}}')" type="button">Delivered</button></td>
+                     <td class="text-center"><button><a href="admin/cancel-order/{{this._id}}" onclick="return confirm('confirm cancel {{this.product}}')">Cancel Order</a></button></td>
+
+                     {{/if}}
+
+                    {{else}}
+                    <td class="text-center"><button id="shipped"  onclick="proceedToShip('{{this._id}}')" type="button">Shipped</button></td>   
+                    <td class="text-center"><button><a href="/admin/cancel-order/{{this._id}}" onclick="return confirm('confirm cancel {{this.product}}')">Cancel Order</a></button></td>
+                    {{/if}} 
+
+
+                    {{/if}}
+                    
+       
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</div>
+
+<!-- /#wrapper -->
+
+<script>
+
+ function proceedToShip(orderId){
+     $.ajax({
+         url:'/admin/changeStatus',
+         method:'post',
+         data:{
+            order: orderId
+         },
+         success:(response)=>{
+          
+                 document.getElementById(orderId).innerHTML= "Shipped"
+                 location.reload()
+                      
+         }
+     })
+ }
+
+ function proceedToDeliver(orderId){
+     console.log(orderId)
+     $.ajax({
+         url:'/admin/changeToDeliver',
+         method:'post',
+         data:{
+            order: orderId
+         },
+         success:(response)=>{
+                 document.getElementById(orderId).innerHTML = "Delivered"
+                 location.reload()
+
+
+         }
+     })
+ }
+    
+</script>
