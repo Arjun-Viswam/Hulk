@@ -398,6 +398,7 @@
     .sg{
     background-color: #e6e6e6;
 }
+
 </style>
 
 <h1>&nbsp;</h1>
@@ -411,8 +412,13 @@
             <div class="panel">
                 <div class="user-heading round">
                     <a href="/edit-profile/{{profile._id}}">
+                    {{#if profile.status}}
                         <img id="profileImage" src="/profile-photos/{{profile._id}}.jpg">
                         <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" >
+                        {{else}}
+                        <img id="profileImage" src="/images/images.png">
+                        <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" >
+                        {{/if}}
                     </a>
                     
                     <h1>{{profile.first_name}}&nbsp;{{profile.last_name}}</h1>

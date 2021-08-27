@@ -28,11 +28,12 @@ module.exports = {
                 userDetails.first_name = userData.first_name
                 userDetails.last_name = userData.last_name
                 userDetails.email = userData.email
-                userDetails.mobile1 = userData.mobile1
+                userDetails.mobile1 = "+91"+userData.mobile1
                 userDetails.password = userData.password
                 userDetails.block = userData.block = false
                 db.get().collection(collection.USER_COLLECTION).insertOne(userDetails).then((data) => {
-                    resolve(data.ops[0])
+                    console.log(data);
+                    resolve({data:data.ops[0],status:true})
                 })
             }
         })
@@ -156,8 +157,9 @@ module.exports = {
             let cart = await db.get().collection(collection.CART_COLLECTION).findOne({ user: objectId(userId) })
             if (cart) {
                 count = cart.products.length
+                resolve(count)
             }
-            resolve(count)
+            
         })
     },
     changeProductQuantity: (details) => {
@@ -497,7 +499,7 @@ module.exports = {
          let ticket = await db.get().collection(collection.COUPON_COLLECTION).findOne({'couponcode':coupon.coupon})
          if(ticket){
              if(ticket.status){
-                 let total= (1-(ticket.offer/100))*coupon.total
+                 let total= parseInt((1-(ticket.offer/100))*coupon.total)
                  db.get().collection(collection.CART_COLLECTION).updateOne({user : objectId(userId)},
                  {
                      $set:{
@@ -521,6 +523,25 @@ module.exports = {
             resolve(cart.totalAmount)
         })
     },
-   
+    updateDP: (userID, userProfile) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.USER_COLLECTION).updateOne({ _id: objectId(userID) },
+                {
+                    $set: {
+                        first_name: userProfile.first_name,
+                        last_name: userProfile.last_name,
+                        mobile1: userProfile.mobile1,
+                        mobile2: userProfile.mobile2,
+                        email: userProfile.email,
+                        district: userProfile.district,
+                        state: userProfile.state,
+                        country: userProfile.country,
+                        status:true
+                    }
+                }).then(() => {
+                    resolve()
+                })
+        })
+    },
 
 }

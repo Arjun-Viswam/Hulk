@@ -21,6 +21,18 @@ $(document).ready(function(){
   });
 });
 </script>
+<script>
+$(document).ready(function(){
+	 
+  $("#myInput2").on("keyup", function() {
+
+    var value = $(this).val().toLowerCase();
+    $(".single-product").filter(function() {
+      $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 	<!-- Topbar -->
 	<div class="topbar">
 		<div class="container">
@@ -95,11 +107,17 @@ $(document).ready(function(){
 								<option>Mass</option>
 								<option>Pro-Mass</option>
 							</select> --}}
-							
+							{{#if prodSearch}}
+							<form>
+								<input name="search" id="myInput2" placeholder="Search Products Here....." type="search">
+								<button class="btnn"><i class="ti-search"></i></button>
+							</form>
+							{{else}}
 							<form>
 								<input name="search" id="myInput" placeholder="Search Products Here....." type="search">
 								<button class="btnn"><i class="ti-search"></i></button>
 							</form>
+							{{/if}}
 						</div>
 					</div>
 				</div>

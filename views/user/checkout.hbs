@@ -18,10 +18,13 @@
     </div>
 </div>
 <!-- End Breadcrumbs -->
+{{#if count}}
 <section>
     <div class="container">
+        {{#if address}}
         <h4>Choose your address </h4>
         <h4>&nbsp;</h4>
+        {{/if}}
         <div class="row">
             {{#each address}}
             <div class="col-md-3 d-flex">
@@ -249,6 +252,15 @@
     </div>
 </section>
 <!--/ End Checkout -->
+{{else}}
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+
+<h1 style="color:rgb(245, 161, 4) ;" class="text-center">Your Cart Is Empty</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+{{/if}}
 
 <script>
     function addAddress(first_name, last_name, address1, address2, district, state, postal, mobile, email, country) {

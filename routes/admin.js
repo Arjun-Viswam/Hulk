@@ -202,7 +202,7 @@ router.get("/delete-offer/:id/:price", async (req, res) => {
 });
 
 
-router.get("/report",verifyLogin,async(req,res)=>{
+router.get("/report",verifyLogin,async(req,res)=>{  
   let orders = await productHelpers.getOrderDetails();
   res.render("admin/report",{admin:true,Nodata:true,orders})
 })

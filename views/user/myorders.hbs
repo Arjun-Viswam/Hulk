@@ -31,7 +31,7 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 </div>
 <!-- End Breadcrumbs -->
 
-
+{{#if orders}}
 <div style="overflow-x:auto;">
     <div class="container">
   <table>
@@ -83,3 +83,12 @@ tr:nth-child(even) {background-color: #f2f2f2;}
   </table>
   </div>
 </div>
+{{else}}
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+
+<h1 style="color:rgb(245, 161, 4) ;" class="text-center">you haven't purchased anything</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+<h1>&nbsp;</h1>
+{{/if}}

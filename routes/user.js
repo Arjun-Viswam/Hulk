@@ -96,7 +96,8 @@ router.post("/signup", (req, res) => {
   userHelpers.doSignup(req.body).then((response) => {
     if (response.status) {
       req.session.userLoggedIn = true;
-      req.session.user = response;
+      req.session.user = response.data;
+      console.log(req.session.user);
       res.redirect("/");
     } else if (response.emailExist) {
       req.session.emailExist = response.emailExist;
@@ -161,10 +162,13 @@ router.get("/edit-profile/:id", verifyLogin, async (req, res) => {
 
 router.post("/update-profile/:id", (req, res) => {
   userHelpers.updateProfile(req.params.id, req.body).then(() => {
+    if(req.files){
+    let image = req.files.image;
+    userHelpers.updateDP(req.params.id, req.body)
+  image.mv("./public/profile-photos/" + req.params.id + ".jpg");
+    }
     res.redirect("/profile/");
   });
-  let image = req.files.image;
-  image.mv("./public/profile-photos/" + req.params.id + ".jpg");
 });
 
 router.get("/otp-login", (req, res) => {
@@ -172,6 +176,7 @@ router.get("/otp-login", (req, res) => {
 });
 
 router.post("/otp-login", async (req, res) => {
+  console.log(req.body);
   let user = await userHelpers.getUserDetails(req.body.full);
   if (user != null) {
     let serviceId =  process.env.TWILIO_SERVICE_ID
@@ -276,6 +281,7 @@ router.get("/checkout", verifyLogin, async (req, res) => {
   });
 });
 
+
 router.post("/checkout", async (req, res) => {
   let totalAmount = req.body.total
  let products = await userHelpers.getCartProductList(req.body.userId);
@@ -314,6 +320,7 @@ router.get("/cancel-order/:id", (req, res) => {
 
 router.post("/coupon", (req, res) => {
   userHelpers.checkCoupon(req.body, req.session.user._id).then((response) => {
+    console.log(response);
     res.json(response);
   });
 });
@@ -325,12 +332,10 @@ router.get('/contact',(req,res)=>{
 router.get('/products',verifyLogin,async(req,res)=>{
   let prodList = await userHelpers.getCartProducts(req.session.user._id);
   productHelpers.getAllProducts().then((products) => {
-  res.render('user/products',{user:true,products,users:req.session.user,prodList})
+  res.render('user/products',{user:true,products,users:req.session.user,prodList,prodSearch:true})
 })
 })
 
-router.get('/abcd',(req,res)=>{
-  res.render('user/abcd')
-})
+
 
 module.exports = router;
