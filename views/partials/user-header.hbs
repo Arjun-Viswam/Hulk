@@ -5,18 +5,18 @@
 $(document).ready(function(){
 	 
   $("#myInput").on("keyup", function() {
-	 document.getElementById('thangappan').style.display='none'
-	 document.getElementById('ponnapan').style.display='none'
-	 document.getElementById('munushi').style.display='none'
+	 document.getElementById('adOne').style.display='none'
+	 document.getElementById('adTwo').style.display='none'
+	 document.getElementById('adThree').style.display='none'
 
     var value = $(this).val().toLowerCase();
     $(".single-product").filter(function() {
       $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
     });
 	if(value==''){
-		 document.getElementById('thangappan').style.display='block'
-	   document.getElementById('ponnapan').style.display='block'
-	   document.getElementById('munushi').style.display='block'
+		 document.getElementById('adOne').style.display='block'
+	   document.getElementById('adTwo').style.display='block'
+	   document.getElementById('adThree').style.display='block'
 	}
   });
 });
@@ -78,8 +78,8 @@ $(document).ready(function(){
 			<div class="row">
 				<div class="col-lg-2 col-md-2 col-12">
 					<!-- Logo -->
-					<div class="logo">
-						<a href="index.html"><img src="images/logo.png" alt="logo"></a>
+					<div class="logo" style="margin-top: -2px;">
+						<a href="/"><img src="/images/5ede3479-a8fd-465a-893c-d21df4dd4b3a.jpg" alt="logo"></a>
 					</div>
 					<!--/ End Logo -->
 					<!-- Search Form -->
@@ -137,7 +137,7 @@ $(document).ready(function(){
 								<div class="bottom">
 									
 									<a href="/myorders" class="btn animate">My Orders</a>
-									<a href="#" class="btn animate">Settings</a>
+									
 									<a href="/password" class="btn animate">Change Password</a>
 								</div>
 							</div>
@@ -149,14 +149,14 @@ $(document).ready(function(){
 							<!-- Shopping Item -->
 							<div class="shopping-item">
 								<div class="dropdown-cart-header">
-									{{!-- <span id="cart-count">{{count}} Items</span> --}}
+									<span id="cart-count">{{count}} Items</span>
 									<a href="/cart">View Cart</a>
 								</div>
 								<ul class="shopping-list">
 									{{#each prodList}}
 									
 									<li>
-										<a href="#" class="remove" title="Remove this item"><i
+										<a href="/remove-fromCart/{{this._id}}/{{this.product._id}}" class="remove" title="Remove this item"><i
 												class="fa fa-remove"></i></a>
 										<a class="cart-img" href="#"><img src="/product-images/{{this.product._id}}first.jpg"
 												alt="#"></a>

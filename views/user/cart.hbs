@@ -200,7 +200,6 @@
        method: 'POST', 
        data: $('#coupon').serialize(),
        success:(response) => { 
-		   console.log(response.notexist)
 		   if(response.notexist){
 			   document.getElementById('errorspan').removeAttribute('hidden')
 		   }else if(response.expired){
@@ -208,6 +207,8 @@
 		   }else if(response){
 		   			document.getElementById('total').innerHTML=response
 					document.getElementById('total2').innerHTML=response
+					document.getElementById('errorspan').setAttribute('hidden',true)
+					document.getElementById('error').setAttribute('hidden',true)
 		   }
             } 
       }) 

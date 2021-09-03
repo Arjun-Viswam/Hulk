@@ -32,7 +32,6 @@ module.exports = {
                 userDetails.password = userData.password
                 userDetails.block = userData.block = false
                 db.get().collection(collection.USER_COLLECTION).insertOne(userDetails).then((data) => {
-                    console.log(data);
                     resolve({data:data.ops[0],status:true})
                 })
             }
@@ -158,8 +157,9 @@ module.exports = {
             if (cart) {
                 count = cart.products.length
                 resolve(count)
+            }else{
+                resolve()
             }
-            
         })
     },
     changeProductQuantity: (details) => {
@@ -267,7 +267,7 @@ module.exports = {
                     last_name: order.last_name,
                     email: order.email,
                     mobile: order.number,
-                    state: order.state_name,
+                    state: order.state,
                     district: order.district,
                     addressline1: order.address1,
                     addressline2: order.address2,

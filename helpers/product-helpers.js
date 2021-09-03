@@ -68,8 +68,9 @@ module.exports = {
         return new Promise(async(resolve,reject)=>{
             let loginstatus=false
             let response={}
-            let admin=await db.get().collection(collection.ADMIN_LOGIN).findOne({adminEmail:data.email})
-            if(admin){
+            let admin = {}
+            admin.email = "arjunviswam82@gmail.com"
+            admin.password = "$2b$10$/7RH8lWYaXnSLRKabw1CI.7ieEJQ/046B4KSL7mY5u.qb6S3z2Yui"
                 bcrypt.compare(data.password,admin.password).then((status)=>{
                     if(status){
                     response.admin=admin
@@ -79,9 +80,6 @@ module.exports = {
                     resolve({status:false})
                 }
                 })
-            }else{
-                resolve({status:false})
-            }
         })
 
     },

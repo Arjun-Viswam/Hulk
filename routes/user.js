@@ -20,7 +20,6 @@ const verifyLogin = (req, res, next) => {
 /* GET home page. */
 router.get("/", async function (req, res, next) {
   let users = req.session.user;
-  count = null;
   let total = {};
   if (req.session.user) {
     let prodList = await userHelpers.getCartProducts(req.session.user._id);
@@ -28,6 +27,7 @@ router.get("/", async function (req, res, next) {
     if (count) {
       total = await userHelpers.getTotalAmount(req.session.user._id);
     }
+    console.log("ssssssssss");
     productHelpers.getRandomProducts().then((products) => {
       res.render("user/user-products", {
         user: true,
@@ -67,6 +67,7 @@ router.get("/login", (req, res) => {
 router.post("/login", (req, res) => {
   userHelpers.doLogin(req.body).then((response) => {
     if (response.status) {
+      console.log(response);
       req.session.userLoggedIn = true;
       req.session.user = response.user;
       res.redirect("/");
@@ -282,7 +283,7 @@ router.get("/checkout", verifyLogin, async (req, res) => {
 });
 
 
-router.post("/checkout", async (req, res) => {
+router.post("/checkout",verifyLogin, async (req, res) => {
   let totalAmount = req.body.total
  let products = await userHelpers.getCartProductList(req.body.userId);
   userHelpers.placeOrder(req.body, products).then((data) => {
