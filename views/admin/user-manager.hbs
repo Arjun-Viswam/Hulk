@@ -37,8 +37,6 @@
                                             <td>{{this.first_name}}</td>
                                             <td>{{this.last_name}}</td>
                                             <td>{{this.email}}</td>
-                                            {{!-- <form action="/admin/block-user/{{this._id}}" method="POST">
-                                            <button type="submit"></button>hou</form>  --}}
                                             {{#if this.block}}
                                             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/admin/unblock-user/{{this._id}}" class="fa fa-ban" style="color:darkgreen;" onclick="return confirm('comfirm to unblock this user {{this.users}}')"></a></td>                          
                                             {{else}}

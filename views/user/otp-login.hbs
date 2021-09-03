@@ -119,7 +119,6 @@ form{
 							</div>
 							<div class="row">
 								<!-- <span class="fa fa-lock"></span> -->
-								{{!-- <input type="password" name="password" id="password" class="form__input" placeholder="Password"> --}}
 							{{#if loginErr}}
 							<p class="error" style="color: #ee0303;">{{loginErr}}</p>
 							{{/if}}
@@ -150,13 +149,10 @@ form{
 });
 
 $("form").submit(function() {
-	//e.preventDefault()
   var full_number = phone_number.getNumber(intlTelInputUtils.numberFormat.E164);
 $("input[name='phone_number[full]'").val(full_number);
  document.getElementById('mobile1').val=full_number
-  //var posting = $.post('/otp-login', {
-    //mobile1: full_number
-  //});
+
   
 });
  </script>

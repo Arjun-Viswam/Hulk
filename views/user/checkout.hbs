@@ -1,6 +1,238 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<style>
+       
+.flash {
+  display: block;
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  width: 350px;
+  padding: 20px 25px 20px 85px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #F7941D;;
+  background-color: #FFF;
+  border: 2px solid #fd8b00;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  z-index: 99
+}
+
+.flash__icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1.8em;
+  height: 100%;
+  padding: 0 0.4em;
+  background-color: #F7941D;;
+  color: #FFF;
+  font-size: 36px;
+  font-weight: 300;
+  transform: translate(0, -50%);
+}
+.flash__icon .icon {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.Sbutton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px 20px;
+  border: 2px solid #F7941D;;
+  border-radius: 2px;
+  color: #F7941D;;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s;
+}
+.Sbutton:hover {
+  cursor: pointer;
+  color: #FFF;
+  background-color: #F7941D;;
+}
+.Sbutton:active {
+  box-shadow: none;
+  background-color: #F7941D;;
+}
+
+@-webkit-keyframes drop-in-fade-out {
+  0% {
+    opacity: 0;
+    visibility: visible;
+    -webkit-transform: translate3d(0, -200%, 0);
+    -moz-transform: translate3d(0, -200%, 0);
+    -ms-transform: translate3d(0, -200%, 0);
+    -o-transform: translate3d(0, -200%, 0);
+    transform: translate3d(0, -200%, 0);
+  }
+  12% {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    visibility: hidden;
+    -webkit-transform: translate3d(75%, 0, 0);
+    -moz-transform: translate3d(75%, 0, 0);
+    -ms-transform: translate3d(75%, 0, 0);
+    -o-transform: translate3d(75%, 0, 0);
+    transform: translate3d(25%, 0, 0);
+  }
+}
+@-moz-keyframes drop-in-fade-out {
+  0% {
+    opacity: 0;
+    visibility: visible;
+    -webkit-transform: translate3d(0, -200%, 0);
+    -moz-transform: translate3d(0, -200%, 0);
+    -ms-transform: translate3d(0, -200%, 0);
+    -o-transform: translate3d(0, -200%, 0);
+    transform: translate3d(0, -200%, 0);
+  }
+  12% {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    visibility: hidden;
+    -webkit-transform: translate3d(75%, 0, 0);
+    -moz-transform: translate3d(75%, 0, 0);
+    -ms-transform: translate3d(75%, 0, 0);
+    -o-transform: translate3d(75%, 0, 0);
+    transform: translate3d(25%, 0, 0);
+  }
+}
+@-o-keyframes drop-in-fade-out {
+  0% {
+    opacity: 0;
+    visibility: visible;
+    -webkit-transform: translate3d(0, -200%, 0);
+    -moz-transform: translate3d(0, -200%, 0);
+    -ms-transform: translate3d(0, -200%, 0);
+    -o-transform: translate3d(0, -200%, 0);
+    transform: translate3d(0, -200%, 0);
+  }
+  12% {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    visibility: hidden;
+    -webkit-transform: translate3d(75%, 0, 0);
+    -moz-transform: translate3d(75%, 0, 0);
+    -ms-transform: translate3d(75%, 0, 0);
+    -o-transform: translate3d(75%, 0, 0);
+    transform: translate3d(25%, 0, 0);
+  }
+}
+@keyframes drop-in-fade-out {
+  0% {
+    opacity: 0;
+    visibility: visible;
+    -webkit-transform: translate3d(0, -200%, 0);
+    -moz-transform: translate3d(0, -200%, 0);
+    -ms-transform: translate3d(0, -200%, 0);
+    -o-transform: translate3d(0, -200%, 0);
+    transform: translate3d(0, -200%, 0);
+  }
+  12% {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    visibility: hidden;
+    -webkit-transform: translate3d(75%, 0, 0);
+    -moz-transform: translate3d(75%, 0, 0);
+    -ms-transform: translate3d(75%, 0, 0);
+    -o-transform: translate3d(75%, 0, 0);
+    transform: translate3d(25%, 0, 0);
+  }
+}
+.animate--drop-in-fade-out {
+  -webkit-animation: drop-in-fade-out 3.5s 0.4s cubic-bezier(.32,1.75,.65,.91);
+  -moz-animation: drop-in-fade-out 3.5s 0.4s cubic-bezier(.32,1.75,.65,.91);
+  -ms-animation: drop-in-fade-out 3.5s 0.4s cubic-bezier(.32,1.75,.65,.91);
+  -o-animation: drop-in-fade-out 3.5s 0.4s cubic-bezier(.32,1.75,.65,.91);
+  animation: drop-in-fade-out 3.5s 0.4s cubic-bezier(.32,1.75,.65,.91);
+}
+</style>
 
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">
@@ -88,53 +320,14 @@
                                     <label>State<span>*</span></label>
                                     <input type="" name="state" id="state" placeholder="" required="required">
 
-                                    {{!-- <select name="state_name" id="state">
-                                        <option value="Andhra Pradhesh">Andhra Pradhesh</option>
-                                        <option value="Arunachal Pradhesh">Arunachal Pradhesh</option>
-                                        <option value="Assam">Assam</option>
-                                        <option value="Bihar">Bihar</option>
-                                        <option value="chattisgarh">chattisgarh</option>
-                                        <option value="Goa">Goa</option>
-                                        <option value="Gujarat">Gujarat</option>
-                                        <option value="Haryana">Haryana</option>
-                                        <option value="Himachal Pradhesh">Himachal Pradhesh</option>
-                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                        <option value="Jharkhand">Jharkhand</option>
-                                        <option value="karnataka">karnataka</option>
-                                        <option value="Kerala">Kerala</option>
-                                        <option value="Madhya Pradhesh">Madhya Pradhesh</option>
-                                        <option value="Maharashtra">Maharashtra</option>
-                                        <option value="Manipur">Manipur</option>
-                                        <option value="Meghalaya">Meghalaya</option>
-                                        <option value="Mizoram">Mizoram</option>
-                                        <option value="Nagaland">Nagaland</option>
-                                        <option value="Odisha">Odisha</option>
-                                        <option value="Punjab">Punjab</option>
-                                        <option value="Rajasthan">Rajasthan</option>
-                                        <option value="Sikkim">Sikkim</option>
-                                        <option value="Tamil Nadu">Tamil Nadu</option>
-                                        <option value="Telangana">Telangana</option>
-                                        <option value="Tripura">Tripura</option>
-                                        <option value="Uttar Pradhesh">Uttar Pradhesh</option>
-                                        <option value="Uttarakhand">Uttarakhand</option>
-                                        <option value="West Bengal">West Bengal</option>
-                                    </select> --}}
+                                    
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <label>District<span>*</span></label>
                                     <input type="text" id="district" name="district" placeholder="" required="required">
-                                    {{!-- <label>State / Divition<span>*</span></label>
-                                    <select name="state-province" id="state-province">
-                                        <option value="divition" selected="selected">New Yourk</option>
-                                        <option>Los Angeles</option>
-                                        <option>Chicago</option>
-                                        <option>Houston</option>
-                                        <option>San Diego</option>
-                                        <option>Dallas</option>
-                                        <option>Charlotte</option>
-                                    </select> --}}
+                                   
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-12">
@@ -162,15 +355,6 @@
                                         required="required">
                                     <input type="text" name="userId" value="{{users._id}}" hidden>
 
-                                    {{!-- <select name="company_name" id="company">
-                                        <option value="company" selected="selected">Microsoft</option>
-                                        <option>Apple</option>
-                                        <option>Xaiomi</option>
-                                        <option>Huawer</option>
-                                        <option>Wpthemesgrid</option>
-                                        <option>Samsung</option>
-                                        <option>Motorola</option>
-                                    </select> --}}
                                 </div>
                             </div>
                             <div class="col-12">
@@ -221,13 +405,14 @@
                                     RazorPay</label>
                                 <label><input name="payment-method" value="paypal" type="radio" required>&nbsp;
                                     PayPal</label>
-                                <input hidden name="total" value="{{total}}" >
+                                <input hidden name="total" value="{{total}}">
                                     
                                         <div id="paypal-button-container"></div>
                                         
                             </div>
                         </div>
                     </div>
+                    
                     <!--/ End Order Widget -->
                     <!-- Payment Method Widget -->
                     <div class="single-widget payement">
@@ -251,6 +436,15 @@
         </div>
     </div>
 </section>
+	<div class="flash" style="z-index: 9999;">
+  <div class="flash__icon">
+   <i class="far fa-check-circle" style="padding-top: 10px;"></i>
+  </div>
+  <p class="flash__body">
+    Success!
+  </p>
+</div>
+	<script src="https://kit.fontawesome.com/a73f9c0e98.js" crossorigin="anonymous"></script>
 <!--/ End Checkout -->
 {{else}}
 <h1>&nbsp;</h1>
@@ -286,9 +480,11 @@
             method: 'POST',
             data: $('#check').serialize(),
             success: (response) => {
-                console.log(response)
                 if (response.paymentMethod=='COD') {
-                   alert("Order Placed")
+                   $(".flash").addClass("animate--drop-in-fade-out");
+        setTimeout(function () {
+          $(".flash").removeClass("animate--drop-in-fade-out");
+        }, 3500);
                    location.href='/myorders'
                 } else if(response.paymentMethod=='razorpay') {
                     razorpayPayment(response)
@@ -308,8 +504,10 @@
                             // This function captures the funds from the transaction.
                             return actions.order.capture().then(function (details) {
                                 // This function shows a transaction success message to your buyer.
-                                alert('Transaction completed');
-                                console.log(response)
+                                $(".flash").addClass("animate--drop-in-fade-out");
+        setTimeout(function () {
+          $(".flash").removeClass("animate--drop-in-fade-out");
+        }, 3500);
                                 location.href = '/myorders/' + response._id + ''
                             });
                         }
@@ -366,9 +564,11 @@ var rzp1 = new Razorpay(options);
                 order
             },
             success:(response)=>{
-                if(response.status){
-                    alert("payment Successfull")
-                    alert("Order Placed")
+               if(response.status){
+                    $(".flash").addClass("animate--drop-in-fade-out");
+          setTimeout(function () {
+          $(".flash").removeClass("animate--drop-in-fade-out");
+        }, 3500);
                     location.href='/myorders'
                 }else{
                     alert("payment failed")
