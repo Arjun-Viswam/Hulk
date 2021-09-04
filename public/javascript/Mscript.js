@@ -21,18 +21,3 @@ function addToCart(productId) {
   });
 }
 
-function test(jobId) {
-  $.ajax({
-    url: "/SaveJob",
-    data: { Id: jobId },
-    method: "post",
-    success: (response) => {
-      if (response.status) {
-        $(".flash").addClass("animate--drop-in-fade-out");
-        setTimeout(function () {
-          $(".flash").removeClass("animate--drop-in-fade-out");
-        }, 3500);
-      }
-    },
-  });
-}
